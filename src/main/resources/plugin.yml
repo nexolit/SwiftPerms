@@ -1,0 +1,22 @@
+name: EzPerms
+version: '${version}'
+website: github.com/nexolit/EzPerms
+main: me.nexolit.ezperms.Main
+load: STARTUP
+loadbefore: [Vault, WorldEdit]
+softdepend: [Vault]
+api-version: 1.19
+author: Nexolit
+description: A simple plugin for managing server permissions.
+commands:
+  permission:
+    description: A command for managing permissions.
+    usage: /permission <group | player | refresh> <name> <add | remove> <permission>
+    permission: ezperms.permissions
+    aliases: [perms, permissions]
+  group:
+    description: A command for managing permission groups.
+    usage: |-
+      /group <add | remove> <group_name> 
+      /group <player> <add | remove> <group_name> <player_name>
+    permission: ezperms.group
