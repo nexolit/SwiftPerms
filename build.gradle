@@ -1,10 +1,14 @@
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id "net.raphimc.class-token-replacer" version "1.1.5"
 }
 
 group = 'me.nexolit.ezperms'
 version = '1.0.0'
+ext.source = project.hasProperty('source') ? project.getProperty('source') : "default"
+
+println "Building jar for: ${project.ext.source}"
 
 repositories {
     mavenCentral()
@@ -28,12 +32,20 @@ dependencies {
     implementation 'org.bstats:bstats-bukkit:3.0.3'
 }
 
-shadowJar {
-    archiveClassifier.set('')
-
-    relocate 'org.bstats', 'me.nexolit'
+sourceSets {
+    main {
+        classTokenReplacer {
+            property("\${source}", project.ext.source)
+        }
+    }
 }
 
+tasks.named('shadowJar').configure {
+    from(tasks.named("replaceTokens"))
+    
+    archiveClassifier.set(project.ext.source)
+    relocate 'org.bstats', 'me.nexolit'
+}
 
 def targetJavaVersion = 17
 java {

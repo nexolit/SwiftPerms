@@ -10,7 +10,7 @@ import java.util.concurrent.Callable;
 
 public class Bstats {
 
-    private static final String DOWNLOAD_SOURCE = "Github";
+    private static final String DOWNLOAD_SOURCE = "${source}";
     private static boolean initialized = false;
 
     public static void init(Plugin plugin, boolean usesVault, GroupManager groupManager) {
