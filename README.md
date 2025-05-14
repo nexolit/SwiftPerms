@@ -105,6 +105,17 @@ the subpermissions of a permission.
 Opting out of this service can be done by editing plugins/bstats/config.yml and changing opt-out to true.
 
 ## BUILDING
+### Windows
+**through CMD:**
 ```console
-./gradlew shadowJar
+build
+```
+**through PowerShell:**
+```powershell
+.\build.cmd
+```
+
+### MacOS / Linux / Unix
+```console
+./build.sh
 ```
